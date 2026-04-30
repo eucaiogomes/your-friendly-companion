@@ -251,12 +251,101 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({
         </div>
       </header>
 
-      {/* ── Main grid ── */}
-      <div className="flex flex-1 overflow-hidden">
-        {/* ──────────── SIDEBAR ──────────── */}
+      {/* ── Scrollable area: hero full-width on top, then sidebar + content grid ── */}
+      <div className="flex-1 overflow-y-auto custom-scrollbar bg-ice">
+        {/* Hero widescreen com capa de fundo + overlay + conteúdo à direita */}
+        <div style={{ padding: '20px 32px 0' }}>
+          <div
+            className="relative overflow-hidden rounded-2xl"
+            style={{ height: 280, boxShadow: '0 12px 32px -16px rgba(0, 51, 102, 0.25)' }}
+          >
+            <img
+              src="https://picsum.photos/seed/lawnight/1600/600"
+              alt="Capa do curso"
+              className="absolute inset-0 w-full h-full object-cover"
+              referrerPolicy="no-referrer"
+            />
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  'linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 35%, rgba(0,0,0,0.78) 75%, rgba(0,0,0,0.88) 100%)',
+              }}
+            />
+            <div className="absolute top-5 left-6 flex gap-2 z-10">
+              <span className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider" style={{ fontSize: 10, color: NAVY }}>EXTENSÃO</span>
+              <span className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider" style={{ fontSize: 10, color: NAVY }}>36h</span>
+            </div>
+            <button
+              className="absolute top-5 right-6 z-10 flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 backdrop-blur px-3 py-2 hover:bg-white/20 transition-colors font-bold text-white"
+              style={{ fontSize: 11 }}
+            >
+              <Info size={13} className="text-white/80" />
+              Sobre o curso
+            </button>
+            <div className="absolute inset-y-0 right-0 z-10 flex flex-col justify-center" style={{ width: '62%', padding: '0 32px' }}>
+              <div className="font-black uppercase tracking-wider mb-2" style={{ fontSize: 11, color: 'var(--brand-color)' }}>
+                Curso de Extensão · Jurídico
+              </div>
+              <h1 className="font-black leading-tight tracking-tight text-white mb-3" style={{ fontSize: 24 }}>
+                2º Curso de extensão em Teoria Geral do Direito: formação do pensamento intelectual brasileiro
+              </h1>
+              <p
+                className="text-white/85"
+                style={{
+                  fontSize: 12.5,
+                  lineHeight: 1.6,
+                  display: isDescExpanded ? 'block' : '-webkit-box',
+                  WebkitLineClamp: isDescExpanded ? undefined : 4,
+                  WebkitBoxOrient: isDescExpanded ? undefined : 'vertical',
+                  overflow: 'hidden',
+                }}
+              >
+                Este curso propõe uma análise profunda das bases do pensamento intelectual brasileiro através da Teoria Geral do Direito.
+                Exploramos as conexões entre a formação jurídica e o desenvolvimento social do país, abordando temas fundamentais para a
+                compreensão da nossa estrutura institucional contemporânea. Durante os encontros, debateremos as obras dos principais
+                juristas e sociólogos que moldaram a compreensão do Estado brasileiro.
+              </p>
+              <button
+                onClick={() => setIsDescExpanded(v => !v)}
+                className="self-start flex items-center gap-1 font-bold mt-2 hover:opacity-80 transition-opacity"
+                style={{ fontSize: 12, color: 'var(--brand-color)' }}
+              >
+                {isDescExpanded ? <>Recolher descrição <ChevronUp size={13} /></> : <>Ler descrição completa <ChevronDown size={13} /></>}
+              </button>
+            </div>
+          </div>
+
+          {/* Meta strip centralizada */}
+          <div className="flex items-center justify-center gap-6 py-4">
+            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
+              <Clock size={14} className="text-gray-400" />
+              <span className="font-bold" style={{ color: NAVY }}>36h</span>
+            </div>
+            <div className="w-px h-4 bg-gray-200" />
+            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
+              <BookOpen size={14} className="text-gray-400" />
+              <span className="font-bold" style={{ color: NAVY }}>11 módulos</span>
+            </div>
+            <div className="w-px h-4 bg-gray-200" />
+            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
+              <GraduationCap size={14} className="text-gray-400" />
+              <span className="font-bold" style={{ color: NAVY }}>Certificado</span>
+            </div>
+            <div className="w-px h-4 bg-gray-200" />
+            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
+              <Users size={14} className="text-gray-400" />
+              <span className="font-bold" style={{ color: NAVY }}>9 turmas</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Grid sidebar + conteúdo (ambos cards brancos sobre fundo ice) */}
+        <div className="flex gap-5" style={{ padding: '0 32px 32px' }}>
+        {/* ──────────── SIDEBAR (card branco) ──────────── */}
         <aside
-          className="relative flex-none flex flex-col border-r border-gray-100 bg-white overflow-y-auto custom-scrollbar"
-          style={{ width: 320, padding: '20px 16px' }}
+          className="relative flex-none flex flex-col bg-white rounded-2xl border border-gray-100"
+          style={{ width: 320, padding: '18px 16px', boxShadow: '0 4px 12px -8px rgba(0, 51, 102, 0.08)' }}
         >
           {/* Section label */}
           <div
@@ -449,116 +538,11 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({
           )}
         </aside>
 
-        {/* ──────────── MAIN CONTENT ──────────── */}
-        <main className="flex-1 overflow-y-auto custom-scrollbar bg-ice" style={{ padding: '20px 32px 28px' }}>
-          {/* Hero widescreen com capa de fundo + overlay + conteúdo à direita */}
-          <div
-            className="relative overflow-hidden rounded-2xl mb-3"
-            style={{ height: 320, boxShadow: '0 12px 32px -16px rgba(0, 51, 102, 0.25)' }}
-          >
-            {/* Imagem de fundo */}
-            <img
-              src="https://picsum.photos/seed/lawnight/1600/600"
-              alt="Capa do curso"
-              className="absolute inset-0 w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-            {/* Overlay escuro: mais forte à direita para legibilidade do texto */}
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 35%, rgba(0,0,0,0.78) 75%, rgba(0,0,0,0.88) 100%)',
-              }}
-            />
-
-            {/* Badges canto superior esquerdo */}
-            <div className="absolute top-5 left-6 flex gap-2 z-10">
-              <span
-                className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider"
-                style={{ fontSize: 10, color: NAVY }}
-              >
-                EXTENSÃO
-              </span>
-              <span
-                className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider"
-                style={{ fontSize: 10, color: NAVY }}
-              >
-                36h
-              </span>
-            </div>
-
-            {/* Botão "Sobre o curso" canto superior direito */}
-            <button
-              className="absolute top-5 right-6 z-10 flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 backdrop-blur px-3 py-2 hover:bg-white/20 transition-colors font-bold text-white"
-              style={{ fontSize: 11 }}
-            >
-              <Info size={13} className="text-white/80" />
-              Sobre o curso
-            </button>
-
-            {/* Conteúdo lado direito */}
-            <div className="absolute inset-y-0 right-0 z-10 flex flex-col justify-center" style={{ width: '62%', padding: '0 32px' }}>
-              <div
-                className="font-black uppercase tracking-wider mb-2"
-                style={{ fontSize: 11, color: 'var(--brand-color)' }}
-              >
-                Curso de Extensão · Jurídico
-              </div>
-              <h1
-                className="font-black leading-tight tracking-tight text-white mb-3"
-                style={{ fontSize: 26 }}
-              >
-                2º Curso de extensão em Teoria Geral do Direito: formação do pensamento intelectual brasileiro
-              </h1>
-              <p
-                className="text-white/85"
-                style={{
-                  fontSize: 13,
-                  lineHeight: 1.6,
-                  display: isDescExpanded ? 'block' : '-webkit-box',
-                  WebkitLineClamp: isDescExpanded ? undefined : 4,
-                  WebkitBoxOrient: isDescExpanded ? undefined : 'vertical',
-                  overflow: 'hidden',
-                }}
-              >
-                Este curso propõe uma análise profunda das bases do pensamento intelectual brasileiro através da Teoria Geral do Direito.
-                Exploramos as conexões entre a formação jurídica e o desenvolvimento social do país, abordando temas fundamentais para a
-                compreensão da nossa estrutura institucional contemporânea. Durante os encontros, debateremos as obras dos principais
-                juristas e sociólogos que moldaram a compreensão do Estado brasileiro.
-              </p>
-              <button
-                onClick={() => setIsDescExpanded(v => !v)}
-                className="self-start flex items-center gap-1 font-bold mt-2 hover:opacity-80 transition-opacity"
-                style={{ fontSize: 12, color: 'var(--brand-color)' }}
-              >
-                {isDescExpanded ? <>Recolher descrição <ChevronUp size={13} /></> : <>Ler descrição completa <ChevronDown size={13} /></>}
-              </button>
-            </div>
-          </div>
-
-          {/* Meta strip centralizada abaixo do hero */}
-          <div className="flex items-center justify-center gap-6 mb-5 py-2">
-            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-              <Clock size={14} className="text-gray-400" />
-              <span className="font-bold" style={{ color: NAVY }}>36h</span>
-            </div>
-            <div className="w-px h-4 bg-gray-200" />
-            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-              <BookOpen size={14} className="text-gray-400" />
-              <span className="font-bold" style={{ color: NAVY }}>11 módulos</span>
-            </div>
-            <div className="w-px h-4 bg-gray-200" />
-            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-              <GraduationCap size={14} className="text-gray-400" />
-              <span className="font-bold" style={{ color: NAVY }}>Certificado</span>
-            </div>
-            <div className="w-px h-4 bg-gray-200" />
-            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-              <Users size={14} className="text-gray-400" />
-              <span className="font-bold" style={{ color: NAVY }}>9 turmas</span>
-            </div>
-          </div>
+        {/* ──────────── MAIN CONTENT (card branco) ──────────── */}
+        <main
+          className="flex-1 min-w-0 bg-white rounded-2xl border border-gray-100"
+          style={{ padding: '8px 24px 24px', boxShadow: '0 4px 12px -8px rgba(0, 51, 102, 0.08)' }}
+        >
 
           {/* Tabs */}
           <div className="flex items-center justify-between border-b border-gray-200 mb-2">
@@ -708,6 +692,7 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({
             </motion.div>
           </AnimatePresence>
         </main>
+        </div>
       </div>
 
       {/* Modals */}
