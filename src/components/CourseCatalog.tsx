@@ -274,21 +274,10 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({
                     'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.0) 100%)',
                 }}
               />
-              <div className="absolute top-5 left-6 flex gap-2 z-10">
-                <span className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider" style={{ fontSize: 10, color: NAVY }}>EXTENSÃO</span>
-                <span className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider" style={{ fontSize: 10, color: NAVY }}>36h</span>
-              </div>
             </div>
 
             {/* Lado direito: painel ice com textos */}
             <div className="relative flex-1 bg-ice flex flex-col justify-center" style={{ padding: '0 32px' }}>
-              <button
-                className="absolute top-5 right-6 z-10 flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 hover:bg-gray-50 transition-colors font-bold"
-                style={{ fontSize: 11, color: NAVY }}
-              >
-                <Info size={13} style={{ color: NAVY, opacity: 0.7 }} />
-                Sobre o curso
-              </button>
               <div className="font-black uppercase tracking-wider mb-2" style={{ fontSize: 11, color: 'var(--brand-color)' }}>
                 Curso de Extensão · Jurídico
               </div>
