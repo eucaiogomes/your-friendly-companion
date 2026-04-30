@@ -253,48 +253,53 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({
 
       {/* ── Scrollable area: hero full-width on top, then sidebar + content grid ── */}
       <div className="flex-1 overflow-y-auto custom-scrollbar bg-ice">
-        {/* Hero widescreen com capa de fundo + overlay + conteúdo à direita */}
+        {/* Hero widescreen: capa à esquerda + painel ice à direita com o texto */}
         <div style={{ padding: '20px 32px 0' }}>
           <div
-            className="relative overflow-hidden rounded-2xl"
+            className="relative flex overflow-hidden rounded-2xl"
             style={{ height: 280, boxShadow: '0 12px 32px -16px rgba(0, 51, 102, 0.25)' }}
           >
-            <img
-              src="https://picsum.photos/seed/lawnight/1600/600"
-              alt="Capa do curso"
-              className="absolute inset-0 w-full h-full object-cover"
-              referrerPolicy="no-referrer"
-            />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  'linear-gradient(90deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 35%, rgba(0,0,0,0.78) 75%, rgba(0,0,0,0.88) 100%)',
-              }}
-            />
-            <div className="absolute top-5 left-6 flex gap-2 z-10">
-              <span className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider" style={{ fontSize: 10, color: NAVY }}>EXTENSÃO</span>
-              <span className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider" style={{ fontSize: 10, color: NAVY }}>36h</span>
+            {/* Lado esquerdo: capa com imagem */}
+            <div className="relative overflow-hidden" style={{ width: '38%' }}>
+              <img
+                src="https://picsum.photos/seed/lawnight/1600/600"
+                alt="Capa do curso"
+                className="absolute inset-0 w-full h-full object-cover"
+                referrerPolicy="no-referrer"
+              />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.05) 40%, rgba(0,0,0,0.0) 100%)',
+                }}
+              />
+              <div className="absolute top-5 left-6 flex gap-2 z-10">
+                <span className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider" style={{ fontSize: 10, color: NAVY }}>EXTENSÃO</span>
+                <span className="bg-white/95 backdrop-blur font-black rounded px-2.5 py-1.5 tracking-wider" style={{ fontSize: 10, color: NAVY }}>36h</span>
+              </div>
             </div>
-            <button
-              className="absolute top-5 right-6 z-10 flex items-center gap-2 rounded-lg border border-white/30 bg-white/10 backdrop-blur px-3 py-2 hover:bg-white/20 transition-colors font-bold text-white"
-              style={{ fontSize: 11 }}
-            >
-              <Info size={13} className="text-white/80" />
-              Sobre o curso
-            </button>
-            <div className="absolute inset-y-0 right-0 z-10 flex flex-col justify-center" style={{ width: '62%', padding: '0 32px' }}>
+
+            {/* Lado direito: painel ice com textos */}
+            <div className="relative flex-1 bg-ice flex flex-col justify-center" style={{ padding: '0 32px' }}>
+              <button
+                className="absolute top-5 right-6 z-10 flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 hover:bg-gray-50 transition-colors font-bold"
+                style={{ fontSize: 11, color: NAVY }}
+              >
+                <Info size={13} style={{ color: NAVY, opacity: 0.7 }} />
+                Sobre o curso
+              </button>
               <div className="font-black uppercase tracking-wider mb-2" style={{ fontSize: 11, color: 'var(--brand-color)' }}>
                 Curso de Extensão · Jurídico
               </div>
-              <h1 className="font-black leading-tight tracking-tight text-white mb-3" style={{ fontSize: 24 }}>
+              <h1 className="font-black leading-tight tracking-tight mb-3" style={{ fontSize: 24, color: NAVY }}>
                 2º Curso de extensão em Teoria Geral do Direito: formação do pensamento intelectual brasileiro
               </h1>
               <p
-                className="text-white/85"
                 style={{
                   fontSize: 12.5,
                   lineHeight: 1.6,
+                  color: 'rgba(0, 51, 102, 0.75)',
                   display: isDescExpanded ? 'block' : '-webkit-box',
                   WebkitLineClamp: isDescExpanded ? undefined : 4,
                   WebkitBoxOrient: isDescExpanded ? undefined : 'vertical',
