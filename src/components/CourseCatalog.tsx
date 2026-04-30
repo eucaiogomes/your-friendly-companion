@@ -450,16 +450,22 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({
         </aside>
 
         {/* ──────────── MAIN CONTENT ──────────── */}
-        <main className="flex-1 overflow-y-auto custom-scrollbar bg-ice" style={{ padding: '28px 40px' }}>
-          {/* Hero: cover left + title/description right */}
-          <div className="flex gap-6 mb-8">
-            {/* Cover */}
+        <main className="flex-1 overflow-y-auto custom-scrollbar bg-ice" style={{ padding: '24px 32px' }}>
+          {/* Hero compacto: container retangular destacado com capa quadrada + título/descrição */}
+          <div
+            className="flex gap-5 mb-5 bg-white rounded-2xl border border-gray-100"
+            style={{
+              padding: 16,
+              boxShadow: '0 8px 24px -12px rgba(0, 51, 102, 0.12), 0 2px 6px -2px rgba(0,0,0,0.04)',
+            }}
+          >
+            {/* Cover quadrada */}
             <div
-              className="relative flex-shrink-0 overflow-hidden rounded-2xl shadow-md"
-              style={{ width: 260, aspectRatio: '4/5' }}
+              className="relative flex-shrink-0 overflow-hidden rounded-xl shadow-md"
+              style={{ width: 168, height: 168 }}
             >
               <img
-                src="https://picsum.photos/seed/lawnight/400/500"
+                src="https://picsum.photos/seed/lawnight/400/400"
                 alt="Capa do curso"
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
@@ -467,96 +473,92 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({
               <div
                 className="absolute inset-0"
                 style={{
-                  background: 'linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0.05) 100%)',
+                  background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 55%, rgba(0,0,0,0) 100%)',
                 }}
               />
-              <div className="absolute top-3 left-3 flex gap-2">
-                {['EXTENSÃO', '36h'].map(label => (
-                  <span
-                    key={label}
-                    className="bg-white/95 backdrop-blur font-black rounded px-2 py-1 tracking-wider"
-                    style={{ fontSize: 9, color: NAVY }}
-                  >
-                    {label}
-                  </span>
-                ))}
+              <div className="absolute top-2 left-2 flex gap-1.5">
+                <span
+                  className="bg-white/95 backdrop-blur font-black rounded px-1.5 py-0.5 tracking-wider"
+                  style={{ fontSize: 8, color: NAVY }}
+                >
+                  EXTENSÃO
+                </span>
               </div>
-              <div className="absolute bottom-4 left-4 right-4">
-                <div className="text-white font-black leading-tight tracking-tight uppercase" style={{ fontSize: 22 }}>
+              <div className="absolute bottom-2 left-2 right-2">
+                <div className="text-white font-black leading-tight tracking-tight uppercase" style={{ fontSize: 13 }}>
                   Teoria Geral<br />do Direito
                 </div>
               </div>
             </div>
 
-            {/* Right: title + description + meta */}
+            {/* Right: título + descrição + meta */}
             <div className="flex-1 min-w-0 flex flex-col">
-              <div className="flex items-start justify-between gap-4 mb-3">
+              <div className="flex items-start justify-between gap-3 mb-1.5">
                 <div
                   className="font-black uppercase tracking-wider"
-                  style={{ fontSize: 10, color: 'var(--brand-color)' }}
+                  style={{ fontSize: 9.5, color: 'var(--brand-color)' }}
                 >
                   Curso de Extensão · Jurídico
                 </div>
                 <button
-                  className="flex-shrink-0 flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 hover:bg-gray-50 transition-colors font-bold"
-                  style={{ fontSize: 11, color: NAVY }}
+                  className="flex-shrink-0 flex items-center gap-1.5 rounded-md border border-gray-200 bg-white px-2 py-1 hover:bg-gray-50 transition-colors font-bold"
+                  style={{ fontSize: 10.5, color: NAVY }}
                 >
-                  <Info size={13} className="text-gray-400" />
+                  <Info size={12} className="text-gray-400" />
                   Sobre o curso
                 </button>
               </div>
 
               <h1
-                className="font-black leading-tight tracking-tight mb-4"
-                style={{ fontSize: 26, color: NAVY }}
+                className="font-black leading-tight tracking-tight mb-1.5"
+                style={{ fontSize: 19, color: NAVY }}
               >
                 2º Curso de extensão em Teoria Geral do Direito: formação do pensamento intelectual brasileiro
               </h1>
 
               <p
-                className="text-gray-600 mb-3"
+                className="text-gray-600"
                 style={{
-                  fontSize: 13.5,
-                  lineHeight: 1.65,
+                  fontSize: 12,
+                  lineHeight: 1.55,
                   display: isDescExpanded ? 'block' : '-webkit-box',
-                  WebkitLineClamp: isDescExpanded ? undefined : 4,
+                  WebkitLineClamp: isDescExpanded ? undefined : 2,
                   WebkitBoxOrient: isDescExpanded ? undefined : 'vertical',
                   overflow: 'hidden',
                 }}
               >
                 Este curso propõe uma análise profunda das bases do pensamento intelectual brasileiro através da Teoria Geral do Direito.
                 Exploramos as conexões entre a formação jurídica e o desenvolvimento social do país, abordando temas fundamentais para a
-                compreensão da nossa estrutura institucional contemporânea. Durante os encontros, debateremos as obras dos principais
-                juristas e sociólogos que moldaram a compreensão do Estado brasileiro.
+                compreensão da nossa estrutura institucional contemporânea.
               </p>
 
               <button
                 onClick={() => setIsDescExpanded(v => !v)}
-                className="self-start flex items-center gap-1 font-bold mb-5 hover:opacity-80 transition-opacity"
-                style={{ fontSize: 12, color: 'var(--brand-color)' }}
+                className="self-start flex items-center gap-1 font-bold mt-1 hover:opacity-80 transition-opacity"
+                style={{ fontSize: 11, color: 'var(--brand-color)' }}
               >
-                {isDescExpanded ? <>Recolher descrição <ChevronUp size={13} /></> : <>Ler descrição completa <ChevronDown size={13} /></>}
+                {isDescExpanded ? <>Recolher <ChevronUp size={12} /></> : <>Ler mais <ChevronDown size={12} /></>}
               </button>
 
               {/* Meta strip */}
-              <div className="mt-auto flex items-center gap-5 pt-4 border-t border-gray-100">
-                <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-                  <Clock size={14} className="text-gray-400" />
+              <div className="mt-auto flex items-center gap-4 pt-3 border-t border-gray-100">
+                <div className="flex items-center gap-1.5 text-gray-500" style={{ fontSize: 11 }}>
+                  <Clock size={12} className="text-gray-400" />
                   <span className="font-bold" style={{ color: NAVY }}>36h</span>
                 </div>
-                <div className="w-px h-4 bg-gray-200" />
-                <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-                  <BookOpen size={14} className="text-gray-400" />
+                <div className="w-px h-3 bg-gray-200" />
+                <div className="flex items-center gap-1.5 text-gray-500" style={{ fontSize: 11 }}>
+                  <BookOpen size={12} className="text-gray-400" />
                   <span className="font-bold" style={{ color: NAVY }}>11 módulos</span>
                 </div>
-                <div className="w-px h-4 bg-gray-200" />
-                <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-                  <GraduationCap size={14} className="text-gray-400" />
+                <div className="w-px h-3 bg-gray-200" />
+                <div className="flex items-center gap-1.5 text-gray-500" style={{ fontSize: 11 }}>
+                  <GraduationCap size={12} className="text-gray-400" />
                   <span className="font-bold" style={{ color: NAVY }}>Certificado</span>
                 </div>
-                <div className="w-px h-4 bg-gray-200" />
-                <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-                  <Users size={14} className="text-gray-400" />
+                <div className="w-px h-3 bg-gray-200" />
+                <div className="flex items-center gap-1.5 text-gray-500" style={{ fontSize: 11 }}>
+                  <Users size={12} className="text-gray-400" />
                   <span className="font-bold" style={{ color: NAVY }}>9 turmas</span>
                 </div>
               </div>
