@@ -316,28 +316,7 @@ export const CourseCatalog: React.FC<CourseCatalogProps> = ({
             </div>
           </div>
 
-          {/* Meta strip centralizada */}
-          <div className="flex items-center justify-center gap-6 py-4">
-            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-              <Clock size={14} className="text-gray-400" />
-              <span className="font-bold" style={{ color: NAVY }}>36h</span>
-            </div>
-            <div className="w-px h-4 bg-gray-200" />
-            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-              <BookOpen size={14} className="text-gray-400" />
-              <span className="font-bold" style={{ color: NAVY }}>11 módulos</span>
-            </div>
-            <div className="w-px h-4 bg-gray-200" />
-            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-              <GraduationCap size={14} className="text-gray-400" />
-              <span className="font-bold" style={{ color: NAVY }}>Certificado</span>
-            </div>
-            <div className="w-px h-4 bg-gray-200" />
-            <div className="flex items-center gap-2 text-gray-500" style={{ fontSize: 12 }}>
-              <Users size={14} className="text-gray-400" />
-              <span className="font-bold" style={{ color: NAVY }}>9 turmas</span>
-            </div>
-          </div>
+          <div style={{ height: 20 }} />
         </div>
 
         {/* Grid sidebar + conteúdo (ambos cards brancos sobre fundo ice) */}
